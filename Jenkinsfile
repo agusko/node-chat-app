@@ -1,17 +1,10 @@
 pipeline {
   agent any
-  boolean buildPassed = true;
   stages {
     
     stage('Build') {
-      steps {
-        script{
-            try {        
-                sh 'npm install'
-            } catch (Exception e) {
-                buildPassed = false;
-            }        
-        }
+      steps {       
+        sh 'npm install'
       }
 
       post {
@@ -20,12 +13,14 @@ pipeline {
         }
       }
     }
+
     stage('Test') {
+      when {
+        expression {
+          currentBuild.result == 'SUCCESS'
+        }
       steps{
-        script {
-            if (buildPassed) {
-             sh 'npm test'
-            }
+        sh 'npm test'
         }
       }
       
