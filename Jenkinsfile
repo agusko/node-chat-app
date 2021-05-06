@@ -2,12 +2,13 @@ pipeline {
   agent any
 
   stages {
-
+    boolean buildPassed = true;
     stage('Build') {
       steps {
-        def buildresult = sh 'npm install'
-        if (buildresult == 'Failed') {
-          error "Build failed"        
+        try {        
+            sh 'npm install'
+        } catch (Exception e) {
+            buildPassed = false;
         }
       }
 
@@ -18,10 +19,7 @@ pipeline {
       }
     }
     stage('Test') {
-      when {
-        smth
-      }
-      steps {
+      if (buildPassed) {
         sh 'npm test'
       }
       post {
