@@ -13,15 +13,9 @@ pipeline {
       }
     }
 
-    stage('Post-test') {
+    post {
       steps {
-        mail(subject: 'Testing node-chat-app - \'${env.JOB_NAME}\'', body: 'readFile("target/surefire-reports/emailable-report.html)', to: 'latowkato@gmail.com')
-      }
-    }
-
-    stage('Extended post-test') {
-      steps {
-        emailext(attachLog: true, subject: 'Extended emial', body: 'Job done', to: 'latowkato@gmail.com')
+        emailext(attachLog: true, subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", to: 'latowkato@gmail.com')
       }
     }
 
