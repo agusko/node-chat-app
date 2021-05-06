@@ -15,7 +15,7 @@ pipeline {
 
     stage('Post-test') {
       steps {
-        mail(subject: 'Testing node-chat-app - \'${env.JOB_NAME}\'', body: 'readFile("target/surefire-reports/emailable-report.html)')
+        mail(subject: 'Testing node-chat-app - \'${env.JOB_NAME}\'', body: 'readFile("target/surefire-reports/emailable-report.html)', to: 'latowkato@gmail.com')
       }
     }
 
