@@ -21,7 +21,7 @@ pipeline {
 
     stage('Extended post-test') {
       steps {
-        emailext(attachLog: true, subject: 'Extended emial', body: 'Job done', to: 'latowkato@gmail,com')
+        emailext(attachLog: true, subject: 'Extended emial', body: 'Job done', to: 'latowkato@gmail.com')
       }
     }
 
