@@ -2,7 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      steps {       
+      steps {
         sh 'npm install'
       }
 
@@ -18,9 +18,9 @@ pipeline {
         expression {
           currentBuild.result == 'SUCCESS'
         }
-      }
       steps{
         sh 'npm test'
+        }
       }
       
       post {
