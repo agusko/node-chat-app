@@ -4,9 +4,6 @@ pipeline {
     stage('Build') {
       steps {       
         sh 'npm install'
-            script {
-                currentBuild.result = 'UNSTABLE'
-            }
       }
 
       post {
