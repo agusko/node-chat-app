@@ -36,5 +36,11 @@ pipeline {
       }
     }
 
+    stage('Deploy') {
+      steps {
+        sh 'smth'
+      }
+    }
+
   }
 }
