@@ -1,1 +1,2 @@
-echo "To jest commit hook, który będzie kiedyś uruchamiał Pipeline po każdym nowym commicie"
+echo "Jenkins pipeline starts to build I hope"
+curl -X POST -L --user aga:11fd146387d3fe75227996b75349ee6dd4 http://localhost:8080/job/node-chat-app%20pipeline/build
