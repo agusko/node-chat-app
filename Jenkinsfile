@@ -1,7 +1,7 @@
 pipeline {
   agent {
-    docker {
-      image 'node:15.14.0-stretch'
+    dockerfile {
+      filename 'Dockerfile'
     }
 
   }
@@ -14,8 +14,6 @@ pipeline {
 
       }
       steps {
-        sh '''sudo chown -R 129:137 "/.npm"
-'''
         sh 'npm install'
       }
     }
