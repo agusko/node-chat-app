@@ -1,11 +1,5 @@
-def dockerImage
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       post {
