@@ -38,7 +38,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'smth'
+        sh 'docker push agusko/devops:latest'
       }
     }
 
