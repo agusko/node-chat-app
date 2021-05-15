@@ -35,11 +35,6 @@ pipeline {
     }
 
     stage('Deploy') {
-      agent{
-        dockerfile{
-            filename: 'Dockerfile'
-        }
-      }
       steps {
         ustash 'artifact1'
         ustash 'artifact2'
