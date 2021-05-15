@@ -9,7 +9,15 @@ pipeline {
 
       }
       steps {
-        sh 'npm install'
+        sh '''npm install
+
+
+
+
+
+
+'''
+        sh 'stash includes: \'nodemodules/*, package-json.lock\', name: \'artifacts\''
       }
     }
 
