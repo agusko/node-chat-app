@@ -3,7 +3,6 @@ pipeline {
   
   stages {
     stage('Build') {
-      agent any
       post {
         always {
           emailext(attachLog: true, subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", to: 'latowkato@gmail.com')
@@ -18,7 +17,6 @@ pipeline {
     }
 
     stage('Test') {
-      agent any
       when {
         expression {
           currentBuild.result != 'UNSTABLE'
