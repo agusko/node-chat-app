@@ -47,15 +47,9 @@ pipeline {
         }
       }
       steps {
-<<<<<<< HEAD
-        sh 'docker build -t node-chat-app:latest .'
         ustash 'artifact1'
         ustash 'artifact2'
-=======
         echo 'Deploying..'
-        unstash 'artifact1'
-        unstash 'artifact2'
->>>>>>> 28967580cf22302e00e5fea02098bd691dd62e83
       }
     }
 
