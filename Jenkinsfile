@@ -1,12 +1,9 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent none
+  
   stages {
     stage('Build') {
+      agent any
       post {
         always {
           emailext(attachLog: true, subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", to: 'latowkato@gmail.com')
@@ -22,6 +19,7 @@ pipeline {
     }
 
     stage('Test') {
+      agent any
       when {
         expression {
           currentBuild.result != 'UNSTABLE'
@@ -40,8 +38,13 @@ pipeline {
     }
 
     stage('Deploy') {
+      agent {
+        dockerfile {
+            filename 'Dockerfile'
+        }
+      }
       steps {
-        sh 'docker build -t node-chat-app:latest .'
+        echo 'Deploying..'
         unstash 'artifact1'
         unstash 'artifact2'
       }
