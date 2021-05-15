@@ -32,7 +32,6 @@ pipeline {
 
       }
       steps {
-        sh 'npm install --global mocha'
         sh 'npm test'
       }
     }
