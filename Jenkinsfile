@@ -17,7 +17,7 @@ pipeline {
 
 
 '''
-        stash includes: 'nodemodules/*, package-json.lock', name: 'artifacts'
+        stash includes: 'package-json.lock', name: 'artifacts'
       }
     }
 
