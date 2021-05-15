@@ -21,6 +21,7 @@ pipeline {
     }
 
     stage('Test') {
+      agent any
       when {
         expression {
           currentBuild.result != 'UNSTABLE'
@@ -34,6 +35,7 @@ pipeline {
 
       }
       steps {
+        sh 'npm install --global mocha'
         sh 'npm test'
       }
     }
