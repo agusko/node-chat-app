@@ -12,7 +12,7 @@ pipeline {
       }
       steps {
         sh 'npm install'
-        stash(includes: 'node_modules/*', name: 'artifact1')
+        stash(includes: 'node_modules/', name: 'artifact1')
         stash(includes: 'package-lock.json', name: 'artifact2')
       }
     }
