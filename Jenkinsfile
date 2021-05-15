@@ -36,6 +36,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
+        sh 'docker build -t node-chat-app:latest .'
         ustash 'artifact1'
         ustash 'artifact2'
       }
