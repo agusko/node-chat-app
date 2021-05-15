@@ -40,10 +40,16 @@ pipeline {
             filename 'Dockerfile'
         }
       }
+      post {
+        always {
+          emailext(attachLog: true, subject: "Jenkins Deploy ${currentBuild.currentResult}: Job ${env.JOB_NAME}", body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} tested ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", to: 'latowkato@gmail.com')
+        }
+
+      }
       steps {
-        ustash 'artifact1'
-        ustash 'artifact2'
         echo 'Deploying..'
+        unstash 'artifact1'
+        unstash 'artifact2'
       }
     }
 
