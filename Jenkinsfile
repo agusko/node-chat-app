@@ -35,8 +35,14 @@ pipeline {
     }
 
     stage('Deploy') {
+      agent{
+        dockerfile{
+            filename: 'Dockerfile'
+        }
+      }
       steps {
-        sh 'docker push agusko/devops:latest'
+        ustash 'artifact1'
+        ustash 'artifact2'
       }
     }
 
